@@ -21,3 +21,7 @@ Where a win could still live (pass 2 ideas):
 1. Off-chain disburser service (Crit/High impacts on Boba assets are accepted): event parsing, reorg handling (service disburses at latestBlock with NO confirmation depth -> source-chain reorg after disbursement = double-spend? needs reorg on L2s/ETH; check current service, not legacy).
 2. In-scope websites: gateway.boba.network (web paid tier, Crit up to $3k), RPC endpoints.
 3. Watch for impl upgrades (future impls are in scope) — diff each new impl on deploy.
+
+## Pass 2 (Oct 19 2026)
+- Relayer reorg lead PARKED: no confirmation depth in public code, but needs an attacker-uncontrollable reorg and the live backend is private. See killed.md H-REORG.
+- Contract + relayer layers exhausted without a payable finding. Remaining options: gateway.boba.network web tier (max $3k crit), or monitor for LightBridge impl upgrades (future impls in scope).
