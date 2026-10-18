@@ -12,3 +12,7 @@
 - Daily-cap bypass via memory struct. KILLED (source). supToken memory copy written back wholesale; transferredAmount monotonic within a fixed 24h window; attacker cannot advance block.timestamp. No bypass.
 
 - Sequential-queue DoS (undisbursable deposit bricks source queue). Owner-config dependent (needs asymmetric whitelist); not attacker-triggerable under symmetric config. Centralization/config → not a payable bug.
+
+- H-REORG relayer disburses with no confirmation depth (pass 2, Oct 19 2026). PARKED / NOT SUBMITTABLE.
+  Evidence: legacy service (boba_legacy teleportation/src/service.ts) and the public fork tovanpanet/light-bridge (Nov 2023) both read events up to provider.getBlockNumber() (latest) with no confirmation buffer; current service (per Wavect case study) polls a subgraph every 60s, batch<=10, KMS-signed. Current backend repo bobanetwork/light-bridge is now PRIVATE/404 -> live code unverifiable.
+  Why not a bounty: exploit needs a source-chain reorg that removes the deposit AFTER disbursement. Attacker cannot cause one: ETH post-merge >1-block reorgs need proposer collusion; OP/Arb/Boba unsafe-head reorgs need sequencer fault. That is consensus/51%-class (OOS "basic economic governance attacks"), and a devnet PoC would only show an artificial reorg against old code, not the deployed system. Worth a hardening note to Boba at most (Info = unpaid).
