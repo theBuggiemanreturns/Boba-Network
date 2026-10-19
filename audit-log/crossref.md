@@ -1,7 +1,7 @@
 # Cross-reference vs prior audits (boba_legacy/boba_audits — ALL OUT OF SCOPE)
 
 LightBridge = Teleportation.sol. Prior reports already cover the obvious classes:
-- Quantstamp #1: hardcoded `call{gas:3000}` for native disbursement (smart-wallet recipients fail). -> OOS (disclosed).
+- gas:3000 native payout (Safe/smart-wallet recipients fail). CORRECTION Oct 19: QS#1's hardcoded-3000 finding is about L2NFTBridgeAltL1/L2ERC1155BridgeAltL1, NOT Teleportation. Real overlap is QS2/3 BOBA-1 'disburseNativeBOBA() Locking Tokens with Failed Transfer' (failed native payouts -> retry path) + Remedy carve-out (privileged retry/manual recovery only). Confirmed: user's Remedy report 'LightBridge native payout gas:3000 soft-fails Safe/smart-wallet recipients; funds frozen until privileged recovery' (High, submitted 2026-10-18 07:31 UTC) closed 'Organization Resolved As Duplicate' by souhailEnya.
 - Quantstamp #2/#3 BOBA-1: failed disbursements can't be retried across chains with current id tracking. -> OOS (disclosed) + Remedy carve-out for failed-disbursement bookkeeping.
 - Quantstamp #2/#3: "A DOS Attack Can Prevent Teleports" — global daily cap can be filled by one actor (griefing). -> OOS (disclosed).
 - Zokyo Aug 2023: fee-on-transfer tokens over-credited by `_amount`. -> OOS (disclosed); also no FoT token whitelisted anywhere live.
